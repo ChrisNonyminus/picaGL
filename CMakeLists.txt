@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 
 project(picaGL)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 file(GLOB_RECURSE PICAGL_SRC CONFIGURE_DEPENDS
         source/*.c)
@@ -17,5 +19,8 @@ target_link_libraries(picaGL PUBLIC -lcitro3d)
 dkp_add_embedded_binary_library(shaders_bin ${CMAKE_CURRENT_BINARY_DIR}/clear.shbin ${CMAKE_CURRENT_BINARY_DIR}/vshader.shbin)
 
 target_link_libraries(picaGL PRIVATE shaders_bin)
+
+install(DIRECTORY include/ DESTINATION /opt/devkitpro/libctru/include)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib/ DESTINATION /opt/devkitpro/libctru/lib)
 
 
