@@ -12,3 +12,4 @@ debug/
 lib/
 bin/
 doc/
+/cmake-build-*
